@@ -1,0 +1,1661 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ==========================================================================
+   Theme Tokens
+   ========================================================================== */
+
+@theme inline {
+  /* Fonts */
+  --font-plus-jakarta: "Plus Jakarta Sans", var(--font-sans), ui-sans-serif, system-ui,
+    sans-serif;
+  --font-heading: var(--font-plus-jakarta);
+  --font-body: var(--font-plus-jakarta);
+  --font-mono-theme: "JetBrains Mono", var(--font-mono), ui-monospace, SFMono-Regular,
+    Menlo, monospace;
+
+  /* Core Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Brand */
+  --color-brand: var(--primary);
+  --color-text-brand: var(--primary);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-foreground: var(--text-foreground);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-neutral: var(--text-neutral);
+  --color-text-muted: var(--text-muted);
+
+  /* Backgrounds */
+  --color-bg-1: var(--background);
+  --color-bg-2: var(--bg-2);
+  --color-bg-3: var(--bg-3);
+  --color-bg-4: var(--bg-4);
+
+  /* Surface */
+  --color-surface: var(--surface);
+
+  /* Feedback */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--destructive);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Radius — restrained, consistent scale */
+  --radius: 8px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 20px;
+  --radius-4xl: 24px;
+
+  /* Control radii */
+  --radius-button: 8px;
+  --radius-action: 8px;
+
+  /* Elevation — subtle, layered */
+  --shadow-xs: 0 1px 2px 0 rgb(16 24 40 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(16 24 40 / 0.06), 0 1px 2px -1px rgb(16 24 40 / 0.06);
+  --shadow-md: 0 4px 8px -2px rgb(16 24 40 / 0.08), 0 2px 4px -2px rgb(16 24 40 / 0.04);
+  --shadow-lg: 0 12px 16px -4px rgb(16 24 40 / 0.08), 0 4px 6px -2px rgb(16 24 40 / 0.03);
+  --shadow-popover: 0 8px 24px -6px rgb(16 24 40 / 0.12), 0 2px 6px -2px rgb(16 24 40 / 0.06);
+
+  /* Motion */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+
+  --text-subtitle: var(--subtitle-size);
+}
+
+/* ==========================================================================
+   Light Theme
+   ========================================================================== */
+
+:root {
+  /* Core */
+  --background: #ffffff;
+  --foreground: #141414;
+
+  /* Brand */
+  --primary: #141414;
+  --primary-foreground: #ffffff;
+
+  --secondary: #ffd60a;
+  --secondary-foreground: #141414;
+
+  /* UI */
+  --card: #ffffff;
+  --card-foreground: #141414;
+
+  --popover: #ffffff;
+  --popover-foreground: #141414;
+
+  --muted: #f6f6f4;
+  --muted-foreground: #5f5f5a;
+
+  --accent: #f6f6f4;
+  --accent-foreground: #141414;
+
+  --destructive: #dc2626;
+
+  --border: #e7e7e4;
+  --input: #dcdcd8;
+  --ring: #141414;
+
+  /* Project text colors */
+  --text-primary: #141414;
+  --text-foreground: #3d3d3a;
+  --text-secondary: #63635d;
+  --text-neutral: #ffffff;
+  --text-muted: #7a7a74;
+
+  /* Background / surfaces */
+  --surface: #ffffff;
+  --surface-hover: #f6f6f4;
+
+  --bg-2: #141414;
+  --bg-3: #f6f6f4;
+  --bg-4: #ffd60a;
+
+  /* Brand alias */
+  --brand: #141414;
+  --brand-foreground: #ffffff;
+
+  /* Feedback */
+  --success: #16a34a;
+  --warning: #d97706;
+
+  /* Sidebar */
+  --sidebar: #fbfbfa;
+  --sidebar-foreground: #141414;
+  --sidebar-primary: #141414;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f1f1ee;
+  --sidebar-accent-foreground: #141414;
+  --sidebar-border: #e7e7e4;
+  --sidebar-ring: #141414;
+
+  /* Charts */
+  --chart-1: #141414;
+  --chart-2: #ffd60a;
+  --chart-3: #63635d;
+  --chart-4: #3d3d3a;
+  --chart-5: #7a7a74;
+
+  /* Fonts */
+  --font-heading: var(--font-plus-jakarta);
+  --font-body: var(--font-plus-jakarta);
+
+  /* ==========================================================================
+     Typography
+     ========================================================================== */
+
+  /* Subtitle */
+  --subtitle-size: 13px;
+  --subtitle-weight: 500;
+  --subtitle-line: 1.5;
+
+  /* Buttons */
+  --btn-font-family: var(--font-heading);
+  --btn-primary-bg: var(--primary);
+  --btn-secondary-bg: var(--secondary);
+  --btn-primary-color: var(--primary-foreground);
+  --btn-secondary-color: var(--secondary-foreground);
+  --btn-radius-default: 8px;
+  --btn-radius-action: 8px;
+
+  --spacing-scale-unit: 4px;
+  --spacing-size-unit: 4px;
+  --spacing-scale-lg: 0.5;
+  --spacing-scale-md: 0.5;
+  --spacing-scale-sm: 0.5;
+  --spacing-size-lg: 0.5;
+  --spacing-size-md: 0.5;
+  --spacing-size-sm: 0.5;
+}
+
+/* ==========================================================================
+   Dark Theme
+   ========================================================================== */
+
+.dark {
+  --background: #0c0c0c;
+  --foreground: #ededed;
+
+  --primary: #ffd60a;
+  --primary-foreground: #141414;
+
+  --secondary: #141414;
+  --secondary-foreground: #ffffff;
+
+  --card: #141414;
+  --card-foreground: #ededed;
+
+  --popover: #171717;
+  --popover-foreground: #ededed;
+
+  --muted: #1f1f1f;
+  --muted-foreground: #a3a3a3;
+
+  --accent: #232323;
+  --accent-foreground: #ffd60a;
+
+  --destructive: #ef4444;
+
+  --border: #262626;
+  --input: #2e2e2e;
+  --ring: #ffd60a;
+
+  --text-primary: #ededed;
+  --text-foreground: #d4d4d4;
+  --text-secondary: #a3a3a3;
+  --text-neutral: #ffffff;
+  --text-muted: #8a8a8a;
+
+  --surface: #141414;
+  --surface-hover: #1f1f1f;
+
+  --bg-2: #ffffff;
+  --bg-3: #1a1a1a;
+  --bg-4: #ffd60a;
+
+  /* Brand alias */
+  --brand: #ffd60a;
+  --brand-foreground: #141414;
+
+  --sidebar: #101010;
+  --sidebar-foreground: #ededed;
+  --sidebar-primary: #ffd60a;
+  --sidebar-primary-foreground: #141414;
+  --sidebar-accent: #232323;
+  --sidebar-accent-foreground: #ffd60a;
+  --sidebar-border: #262626;
+  --sidebar-ring: #ffd60a;
+
+  --chart-1: #ffd60a;
+  --chart-2: #ffffff;
+  --chart-3: #a3a3a3;
+  --chart-4: #8a8a8a;
+  --chart-5: #525252;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply font-body
+      bg-background
+      text-text-primary
+      text-[14px]
+      leading-[1.5]
+      antialiased;
+  }
+
+  /* Numeric data reads better with tabular figures */
+  table,
+  [data-numeric] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ==========================================================================
+     Typography — dense product scale
+     ========================================================================== */
+
+  h1,
+  .h1 {
+    @apply font-heading font-bold
+      text-[30px] leading-[1.2] tracking-[-0.02em]
+      sm:text-[34px]
+      lg:text-[38px]
+      text-text-primary;
+  }
+
+  h2,
+  .h2 {
+    @apply font-heading font-semibold
+      text-[24px] leading-[1.25] tracking-[-0.018em]
+      sm:text-[26px]
+      lg:text-[28px]
+      text-text-primary;
+  }
+
+  h3,
+  .h3 {
+    @apply font-heading font-semibold
+      text-[20px] leading-[1.3] tracking-[-0.014em]
+      lg:text-[22px]
+      text-text-primary;
+  }
+
+  h4,
+  .h4 {
+    @apply font-heading font-semibold
+      text-[18px] leading-[1.35] tracking-[-0.012em]
+      lg:text-[19px]
+      text-text-primary;
+  }
+
+  h5,
+  .h5 {
+    @apply font-heading font-semibold
+      text-[16px] leading-[1.4] tracking-[-0.008em]
+      text-text-primary;
+  }
+
+  h6,
+  .h6 {
+    @apply font-heading font-semibold
+      text-[15px] leading-[1.4] tracking-[-0.006em]
+      text-text-primary;
+  }
+
+  h7,
+  .h7 {
+    @apply font-heading font-semibold
+      text-[14px] leading-[1.45]
+      text-text-primary;
+  }
+
+  .hero-h {
+    @apply font-heading font-bold
+      text-[32px] leading-[1.15] tracking-[-0.022em]
+      sm:text-[38px]
+      lg:text-[44px]
+      text-text-primary;
+  }
+
+  /* ==========================================================================
+     Accessibility — consistent focus treatment
+     ========================================================================== */
+
+  :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+    @apply outline-2 outline-offset-2 outline-[var(--ring)];
+  }
+
+  /* ==========================================================================
+     Form element defaults
+     ========================================================================== */
+
+  input,
+  select,
+  textarea,
+  button {
+    font-family: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-[var(--text-muted)];
+  }
+
+  /* Remove the browser's number spinners for a cleaner control set */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  /* Date/time pickers inherit the field styling rather than the UA default */
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"] {
+    @apply text-[var(--text-primary)];
+  }
+
+  ::selection {
+    @apply bg-[color-mix(in_srgb,var(--brand)_18%,transparent)] text-[var(--text-primary)];
+  }
+}
+
+@layer components {
+  /* ==========================================================================
+  Container
+  ========================================================================== */
+
+  .section-container {
+    @apply mx-auto w-full max-w-[1280px] px-5 sm:px-6 lg:px-8;
+  }
+
+  /* ==========================================================================
+     Paragraph Text Utilities
+     ========================================================================== */
+
+  .para-text-lg {
+    @apply font-body font-normal
+      text-[15px] leading-[1.55] tracking-[-0.004em]
+      lg:text-[16px]
+      text-text-primary;
+  }
+
+  .para-text-md {
+    @apply font-body font-normal
+      text-[14px] leading-[1.55]
+      lg:text-[15px]
+      text-text-primary;
+  }
+
+  .para-text-sm {
+    @apply font-body font-normal
+      text-[13px] leading-[1.5]
+      text-text-primary;
+  }
+
+  .para-text-xs {
+    @apply font-body font-normal
+      text-[12px] leading-[1.45]
+      text-text-secondary;
+  }
+
+  .para-text-xxs {
+    @apply font-body font-normal
+      text-[11px] leading-[1.45]
+      text-[var(--text-muted)];
+  }
+
+  /* ==========================================================================
+  Section
+  ========================================================================== */
+
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20;
+  }
+
+  /* ==========================================================================
+     Buttons — shared surface helpers
+     ========================================================================== */
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2
+      w-fit
+      border border-transparent
+      font-heading font-medium
+      whitespace-nowrap
+      cursor-pointer
+      select-none
+      transition-[background-color,border-color,color,box-shadow]
+      duration-150
+      ease-[var(--ease-out-quart)]
+      disabled:pointer-events-none
+      disabled:opacity-50;
+  }
+
+  .btn:focus-visible {
+    @apply outline-2 outline-offset-2 outline-[var(--ring)];
+  }
+
+  /* ==========================================================================
+     Button Sizes — fixed, predictable heights
+     ========================================================================== */
+
+  .btn-sm {
+    @apply h-8 px-3 text-[13px] rounded-[var(--radius-button)];
+  }
+
+  .btn-md {
+    @apply h-9 px-3.5 text-[14px] rounded-[var(--radius-button)];
+  }
+
+  .btn-lg {
+    @apply h-11 px-5 text-[15px] rounded-[var(--radius-button)];
+  }
+
+  /* ==========================================================================
+     Primary Button
+     ========================================================================== */
+
+  .btn-primary {
+    @apply font-heading font-medium
+      text-[14px]
+      py-2
+      px-4
+      rounded-[var(--radius-button)]
+      border border-transparent
+      bg-primary
+      text-primary-foreground
+      shadow-xs
+      transition-[background-color,box-shadow]
+      duration-150
+      hover:bg-[color-mix(in_srgb,var(--primary)_88%,white)]
+      active:bg-[color-mix(in_srgb,var(--primary)_82%,black)]
+      disabled:opacity-50
+      disabled:cursor-not-allowed;
+  }
+
+  /* ==========================================================================
+     Secondary Button
+     ========================================================================== */
+
+  .btn-secondary {
+    @apply font-heading font-medium
+      text-[14px]
+      py-2
+      px-4
+      rounded-[var(--radius-button)]
+      border border-transparent
+      bg-secondary
+      text-secondary-foreground
+      shadow-xs
+      transition-[background-color,box-shadow]
+      duration-150
+      hover:bg-[color-mix(in_srgb,var(--secondary)_88%,white)]
+      active:bg-[color-mix(in_srgb,var(--secondary)_82%,black)]
+      disabled:opacity-50
+      disabled:cursor-not-allowed;
+  }
+
+  /* ==========================================================================
+     Outline Button
+     ========================================================================== */
+
+  .btn-outline {
+    @apply font-heading font-medium
+      text-[14px]
+      py-2
+      px-4
+      rounded-[var(--radius-button)]
+      border border-[var(--border)]
+      bg-[var(--surface)]
+      text-[var(--text-primary)]
+      transition-[background-color,border-color,color]
+      duration-150
+      hover:bg-[var(--surface-hover)]
+      hover:border-[var(--input)]
+      active:bg-[color-mix(in_srgb,var(--surface-hover)_100%,black_4%)]
+      disabled:opacity-50
+      disabled:cursor-not-allowed;
+  }
+
+  /* ==========================================================================
+     Action / Danger Button
+     ========================================================================== */
+
+  .btn-action,
+  .btn-danger {
+    @apply font-heading font-medium
+      text-[14px]
+      py-2
+      px-4
+      rounded-[var(--radius-button)]
+      border border-transparent
+      bg-destructive
+      text-white
+      shadow-xs
+      transition-[background-color,box-shadow]
+      duration-150
+      hover:bg-[color-mix(in_srgb,var(--destructive)_88%,black)]
+      active:bg-[color-mix(in_srgb,var(--destructive)_82%,black)]
+      disabled:opacity-50
+      disabled:cursor-not-allowed;
+  }
+}
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+
+@keyframes blurDropIn {
+  0% {
+    opacity: 0;
+    filter: blur(12px);
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@utility blur-drop-in {
+  animation: blurDropIn 0.8s ease-in-out forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Slide Up
+   -------------------------------------------------------------------------- */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility slide-up {
+  animation: slideUp 0.8s ease-in-out forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Image Reveal
+   -------------------------------------------------------------------------- */
+
+@keyframes heroImageReveal {
+  from {
+    transform: scale(1.15);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@utility hero-image-reveal {
+  animation: heroImageReveal 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ==========================================================================
+   Horizontal Scroll Animations
+   ========================================================================== */
+
+@keyframes category-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-category-scroll {
+  width: max-content;
+  animation: category-scroll 20s linear infinite;
+
+  @media (min-width: 1024px) {
+    animation: none;
+    width: 100%;
+  }
+}
+
+@utility animate-video-scroll {
+  width: max-content;
+  animation: category-scroll 20s linear infinite;
+}
+
+/* ==========================================================================
+   Testimonial Scroll
+   ========================================================================== */
+
+@keyframes testimonial-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@utility animate-testimonial-scroll {
+  width: max-content;
+  animation: testimonial-scroll 60s linear infinite;
+}
+
+/* ==========================================================================
+   Testimonial Heading
+   ========================================================================== */
+
+@keyframes scaleHeading {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.5);
+  }
+}
+
+@utility testimonial-heading {
+  animation: scaleHeading linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 100%;
+}
+
+/* ==========================================================================
+   Button Slide
+   ========================================================================== */
+
+@utility btn-slide {
+  @apply relative overflow-hidden;
+}
+
+@utility btn-label {
+  @apply block;
+
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btn-slide::after {
+  content: attr(data-text);
+
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateY(100%);
+
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+
+  color: inherit;
+  font: inherit;
+}
+
+/* ==========================================================================
+   Button Hover Animation
+   ========================================================================== */
+
+.group:hover .btn-label {
+  transform: translateY(-200%);
+}
+
+.group:hover .btn-slide::after {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Button Icon
+   ========================================================================== */
+
+@utility button-icon {
+  transform-origin: center;
+
+  transition:
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .button-icon {
+  transform: rotate(45deg);
+}
+
+
+/* ==========================================================================
+   Spacing Configuration
+
+   A single 0.5 multiplier keeps every *-scale-N utility on a deterministic
+   4px-derived grid: *-1 = 2px, *-2 = 4px, ... *-6 = 12px, *-8 = 16px.
+   ========================================================================== */
+
+/* ==========================================================================
+   Margin
+   ========================================================================== */
+
+@utility m-scale-* {
+  margin: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility m-scale-lg-* {
+  margin: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility m-scale-md-* {
+  margin: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility m-scale-sm-* {
+  margin: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility mt-scale-* {
+  margin-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mt-scale-lg-* {
+  margin-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility mt-scale-md-* {
+  margin-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mt-scale-sm-* {
+  margin-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility mr-scale-* {
+  margin-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mr-scale-lg-* {
+  margin-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility mr-scale-md-* {
+  margin-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mr-scale-sm-* {
+  margin-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility mb-scale-* {
+  margin-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mb-scale-lg-* {
+  margin-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility mb-scale-md-* {
+  margin-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mb-scale-sm-* {
+  margin-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility ml-scale-* {
+  margin-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility ml-scale-lg-* {
+  margin-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility ml-scale-md-* {
+  margin-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility ml-scale-sm-* {
+  margin-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility mx-scale-* {
+  margin-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mx-scale-lg-* {
+  margin-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility mx-scale-md-* {
+  margin-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility mx-scale-sm-* {
+  margin-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility my-scale-* {
+  margin-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility my-scale-lg-* {
+  margin-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility my-scale-md-* {
+  margin-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility my-scale-sm-* {
+  margin-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+/* ==========================================================================
+   Padding
+   ========================================================================== */
+
+@utility p-scale-* {
+  padding: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility p-scale-lg-* {
+  padding: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility p-scale-md-* {
+  padding: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility p-scale-sm-* {
+  padding: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+@utility pt-scale-* {
+  padding-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pt-scale-lg-* {
+  padding-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility pt-scale-md-* {
+  padding-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pt-scale-sm-* {
+  padding-top: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+@utility pr-scale-* {
+  padding-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pr-scale-lg-* {
+  padding-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility pr-scale-md-* {
+  padding-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pr-scale-sm-* {
+  padding-right: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+@utility pb-scale-* {
+  padding-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pb-scale-lg-* {
+  padding-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility pb-scale-md-* {
+  padding-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pb-scale-sm-* {
+  padding-bottom: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+@utility pl-scale-* {
+  padding-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pl-scale-lg-* {
+  padding-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility pl-scale-md-* {
+  padding-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility pl-scale-sm-* {
+  padding-left: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+@utility px-scale-* {
+  padding-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility px-scale-lg-* {
+  padding-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility px-scale-md-* {
+  padding-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility px-scale-sm-* {
+  padding-inline: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+@utility py-scale-* {
+  padding-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility py-scale-lg-* {
+  padding-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility py-scale-md-* {
+  padding-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility py-scale-sm-* {
+  padding-block: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+
+/* ==========================================================================
+   Gap
+   ========================================================================== */
+
+@utility gap-scale-* {
+  gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility gap-scale-lg-* {
+  gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility gap-scale-md-* {
+  gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility gap-scale-sm-* {
+  gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility gap-x-scale-* {
+  column-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility gap-x-scale-lg-* {
+  column-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility gap-x-scale-md-* {
+  column-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility gap-x-scale-sm-* {
+  column-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+@utility gap-y-scale-* {
+  row-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility gap-y-scale-lg-* {
+  row-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-lg)
+  );
+}
+
+@utility gap-y-scale-md-* {
+  row-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-md)
+  );
+}
+
+@utility gap-y-scale-sm-* {
+  row-gap: calc(
+    --value(number) *
+    var(--spacing-scale-unit) *
+    var(--spacing-scale-sm)
+  );
+}
+
+/* ==========================================================================
+   Space Between Children
+   ========================================================================== */
+
+@utility space-x-scale-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-x-reverse: 0;
+
+    margin-inline-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      var(--tw-space-x-reverse)
+    );
+
+    margin-inline-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      calc(1 - var(--tw-space-x-reverse))
+    );
+  }
+}
+
+@utility space-x-scale-lg-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-x-reverse: 0;
+
+    margin-inline-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-lg) *
+      var(--tw-space-x-reverse)
+    );
+
+    margin-inline-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-lg) *
+      calc(1 - var(--tw-space-x-reverse))
+    );
+  }
+}
+
+@utility space-x-scale-md-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-x-reverse: 0;
+
+    margin-inline-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      var(--tw-space-x-reverse)
+    );
+
+    margin-inline-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      calc(1 - var(--tw-space-x-reverse))
+    );
+  }
+}
+
+@utility space-x-scale-sm-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-x-reverse: 0;
+
+    margin-inline-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-sm) *
+      var(--tw-space-x-reverse)
+    );
+
+    margin-inline-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-sm) *
+      calc(1 - var(--tw-space-x-reverse))
+    );
+  }
+}
+
+@utility space-y-scale-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+
+    margin-block-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      var(--tw-space-y-reverse)
+    );
+
+    margin-block-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+}
+
+@utility space-y-scale-lg-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+
+    margin-block-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-lg) *
+      var(--tw-space-y-reverse)
+    );
+
+    margin-block-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-lg) *
+      calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+}
+
+@utility space-y-scale-md-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+
+    margin-block-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      var(--tw-space-y-reverse)
+    );
+
+    margin-block-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-md) *
+      calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+}
+
+@utility space-y-scale-sm-* {
+  :where(& > :not(:last-child)) {
+    --tw-space-y-reverse: 0;
+
+    margin-block-start: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-sm) *
+      var(--tw-space-y-reverse)
+    );
+
+    margin-block-end: calc(
+      --value(number) *
+      var(--spacing-scale-unit) *
+      var(--spacing-scale-sm) *
+      calc(1 - var(--tw-space-y-reverse))
+    );
+  }
+}
+
+
+/* Size Utilities */
+
+@utility size-scale-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+}
+
+@utility size-scale-lg-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-lg)
+  );
+
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-lg)
+  );
+}
+
+@utility size-scale-sm-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-sm)
+  );
+
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-sm)
+  );
+}
+
+@utility size-scale-md-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+}
+
+@utility h-scale-* {
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+}
+
+@utility h-scale-md-* {
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+}
+
+@utility h-scale-lg-* {
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-lg)
+  );
+}
+
+@utility h-scale-sm-* {
+  height: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-sm)
+  );
+}
+
+@utility w-scale-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+}
+
+@utility w-scale-md-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-md)
+  );
+}
+
+@utility w-scale-lg-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-lg)
+  );
+}
+
+@utility w-scale-sm-* {
+  width: calc(
+    --value(number) *
+    var(--spacing-size-unit) *
+    var(--spacing-size-sm)
+  );
+}
