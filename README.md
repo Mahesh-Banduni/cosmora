@@ -6,7 +6,7 @@ AI lead matching and outbound email campaigns, built on Next.js 16, Prisma 7, Ne
 
 **Admin-managed lead database → AI/user lead matching → authorized lead selection → email campaign builder → AI/HTML/visual email creation → personalization → the user's own SMTP → campaign sending → basic analytics.**
 
-## Stack
+## Tech Stack
 
 | Concern | Choice |
 | --- | --- |
